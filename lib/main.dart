@@ -1,5 +1,6 @@
 import 'package:dynemic_widget_app/quote.dart';
 import 'package:flutter/material.dart';
+import 'package:dynemic_widget_app/QuoteCard.dart';
 
 void main() => runApp(MaterialApp
 (
@@ -33,9 +34,8 @@ class _QuateListState extends State<QuateList>
 
       body: Column
       (
-        children: quotes.map((quote) => Text("${quote.quoteText} - ${quote.author}")).toList(),
+        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
       ),
     );
   }
 }
-

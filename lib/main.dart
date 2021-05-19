@@ -1,24 +1,24 @@
-import 'package:dynemic_widget_app/quote.dart';
+import 'package:dynemic_widget_app/Todo.dart';
 import 'package:flutter/material.dart';
-import 'package:dynemic_widget_app/QuoteCard.dart';
+import 'package:dynemic_widget_app/TodoListcard.dart';
 
 void main() => runApp(MaterialApp
 (
-  home: QuateList(),
+  home: todoList(),
 ));
 
-class QuateList extends StatefulWidget {
+class todoList extends StatefulWidget {
   @override
-  _QuateListState createState() => _QuateListState();
+  _todoListState createState() => _todoListState();
 }
 
-class _QuateListState extends State<QuateList> 
+class _todoListState extends State<todoList> 
 {
 
-  List<Quote> quotes = [ 
-    Quote(quoteText: "Code is like humor. When you have to explain it, it’s bad", author: "Cory House"),
-    Quote(quoteText: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde"),
-    Quote(quoteText: "Believe in you!, only and only you can do it", author: "Rahul Patalia"),
+  List<Todo> Todolist = [ 
+    Todo(Item: "Finish Assignment", Catagory: "University Work"),
+    Todo(Item: "Take walk", Catagory: "General"),
+    Todo(Item: "Job at 10 a.m.", Catagory: "part-time job"),
     ];
 
   @override
@@ -27,14 +27,31 @@ class _QuateListState extends State<QuateList>
       backgroundColor: Colors.lightBlue[50],
       appBar: AppBar
       (
-        title: Text("Dynemic Widgets App"),
+        title: Text("Todo List"),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
 
-      body: Column
+      body: SingleChildScrollView
       (
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        child: Column
+        (
+          children: Todolist.map((todo) => TodoListcard
+          (
+            todo: todo,
+            delete: () {
+              setState(() 
+              {
+                Todolist.remove(todo);
+              });
+            }
+          )).toList(),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton
+      (
+        onPressed: () {},
+        child: Icon(Icons.add_circle_outlined)
       ),
     );
   }
